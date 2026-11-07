@@ -24,12 +24,30 @@ class PlatformController extends Controller
     }
 
     // 2. تحويل الزائر وحساب النقرات
-    public function showPost($slug)
+    // 2. تحويل الزائر وحساب النقرات (محمي من خطأ 500)
+    public function go($slug)
     {
-        $post = Post::with('platform')->where('slug', $slug)->firstOrFail();
-        $post->increment('views');
+        $platform = Platform::where('slug', $slug)->first();
 
-        return view('post', compact('post'));
+        // إيلا مالقاش المنصة، يرجعو للصفحة الرئيسية بلا Error 500
+        if (!$platform) {
+            return redirect()->route('home');
+        }
+
+        // نحاولو نزيدو +1 فـ النقرات، وإيلا كانت SQLite حابسة الكتابة ما يتبلوكاش الموقع
+        try {
+            $platform->increment('clicks_count');
+        } catch (\Throwable $e) {
+            // كنتجاوزو خطأ قاعدة البيانات باش الزائر يمشي للرابط ديالك ديريكت
+        }
+
+        // نتأكدو بلي الرابط كيبدا بـ https:// باش ما يضربش Error 500
+        $url = trim($platform->affiliate_url);
+        if (!str_starts_with($url, 'http://') && !str_starts_with($url, 'https://')) {
+            $url = 'https://' . $url;
+        }
+
+        return redirect()->away($url);
     }
 
     // 3. صفحة لوحة التحكم (Admin)

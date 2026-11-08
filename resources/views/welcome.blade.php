@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <meta name="google-site-verification" content="Rroj6md8X5BU_OGZmYWhB2BKxZ6oEcy50XnG8Ea6MII" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أفضل منصات التداول والأدوات الموثوقة 2026</title>
@@ -8,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Cairo', sans-serif; }</style>
 </head>
+
 <body class="bg-slate-900 text-slate-100">
 
     <!-- Navbar -->
